@@ -165,7 +165,7 @@ function _setupHomeWin(w) {
 function _openSubWin(cbFunc) {
 
 	//=== MetroWindowとして生成
-	var w = MetroUI.MetroWindow();
+	var w = new MetroUI.MetroWindow();
 	w.backgroundColor = "white";
 
 	//=== ヘッダ部分のデザイン画像を挿入
