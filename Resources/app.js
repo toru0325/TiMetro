@@ -95,9 +95,16 @@ function _setupHomeWin(w) {
 	//=== 右エリアのメニューリストをTableViewで生成
 	var data = [];
 	for(var i = 0; i < 20; i++) {
-		data.push({
-			leftImage : "src/menu_dummy_0" + ((i % 5) + 1) + ".png", //=== ダミー画像を使用
+		var rv = Ti.UI.createTableViewRow({
+			width : 260,
+			height : 44,
 		});
+		rv.add(Ti.UI.createView({
+			width : 180,
+			left : 0,
+			backgroundImage : "src/menu_dummy_0" + ((i % 5) + 1) + ".png", //=== ダミー画像を使用
+		}));
+		data.push(rv);
 	}
 	var tv = Ti.UI.createTableView({
 		width : 260,
@@ -109,6 +116,10 @@ function _setupHomeWin(w) {
 		rowHeight : 44,
 		data : data
 	});
+	//=== 起動時に一瞬表示されるバグを回避するハック
+	tv.visible = false;
+	setTimeout(tv.show, 50);
+	//
 	wrapV.add(tv);
 
 	//=== ウィンドウがアクティブになったら自動でFlipInするように設定
