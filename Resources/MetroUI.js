@@ -39,7 +39,7 @@ exports.MetroMatrixView = function(props) {
 		//=== 各ViewのプロパティをFIXしてsvに挿入
 		for(var i = 0; i < views.length; i++) {
 			var v = views[i];
-			var t = Ti.UI.create3DMatrix();
+			var t = Ti.UI.iOS.create3DMatrix();
 			//=== 奥行きを設定
 			t.m34 = 1.0 / -400;
 			v.width = cellWidth;
@@ -96,7 +96,7 @@ exports.MetroMatrixView = function(props) {
 				delay : (views.length - 1 - i) * delay,
 				duration : 400,
 				transform : v._t,
-				curve : Ti.UI.ANIMATION_CURVE_EASE_IN_OUT,
+				curve : Ti.UI.iOS.ANIMATION_CURVE_EASE_IN_OUT,
 			};
 			v.transform = v._t.rotate(-90, 0, 1, 0);
 			if(i < views.length - 1) {
@@ -157,7 +157,7 @@ exports.MetroWindow = function() {
 	//============== プライベートメソッド ==============
 	//=== ウィンドウ退場アニメーション
 	function _flipOut(cbFunc) {
-		var t = Ti.UI.create3DMatrix();
+		var t = Ti.UI.iOS.create3DMatrix();
 		//=== 奥行きを設定
 		t.m34 = -1 / 400;
 		w.animate({
@@ -173,7 +173,7 @@ exports.MetroWindow = function() {
 
 	//=== ウィンドウ登場アニメーション
 	function _flipIn(cbFunc) {
-		var t = Ti.UI.create3DMatrix();
+		var t = Ti.UI.iOS.create3DMatrix();
 		t.m34 = -1 / 400;
 		w.transform = t.rotate(90, 0, 1, 0);
 		w.opacity = 0.0;
